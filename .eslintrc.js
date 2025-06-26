@@ -15,7 +15,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'import/no-unresolved': 'off',
     'import/order': [
-      'warn',
+      'warn', // This sets the severity of the rule (warning)
       {
         groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
         pathGroups: [
@@ -25,12 +25,13 @@ module.exports = {
             position: 'before',
           },
         ],
-        pathGroupsExcludeImportTypes: ['react'],
         'newlines-between': 'always',
         alphabetize: {
           order: 'asc',
           caseInsensitive: true,
         },
+        // THESE ARE THE LINES THAT MUST BE GONE
+        // 'distinctGroup', 'named', 'warnOnUnassignedImports', 'pathGroupsExcludeImportTypes'
       },
     ],
   },

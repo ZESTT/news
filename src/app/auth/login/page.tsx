@@ -25,13 +25,11 @@ export default function LoginForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Basic validation
     if (!email || !password) {
       toast.error('Please fill in all fields');
       return;
     }
 
-    // Email format validation
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       toast.error('Please enter a valid email address');
       return;
@@ -50,7 +48,6 @@ export default function LoginForm() {
         throw error;
       }
       
-      // Show success message
       toast.success('Successfully signed in!');
       
       // The actual redirect will be handled by the AuthContext's onAuthStateChange
