@@ -190,9 +190,9 @@ export default function HomePage() {
             <h2 className="text-3xl md:text-4xl font-bold font-headline text-foreground mb-8">
               Try TruthScan (Interactive Demo)
             </h2>
-            <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
-              We're working on an interactive demo for you to experience TruthScan&apos;s power firsthand. Stay tuned!
-            </p>
+      <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
+  We're working on an interactive demo for you to experience TruthScan&apos;s power firsthand. Stay tuned!
+</p>
             <Card className="max-w-2xl mx-auto bg-card p-8 rounded-lg shadow-xl text-left">
                 <CardTitle className="mb-4 text-lg text-card-foreground">Sample Analysis Result:</CardTitle>
                 <div className="space-y-3">
