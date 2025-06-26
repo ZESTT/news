@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { cn } from '@/lib/utils';
 import { AuthProvider } from '@/contexts/AuthContext';
+import { Suspense } from 'react'; // <--- ADD THIS LINE
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -83,12 +84,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AuthProvider>
-            <div className="relative flex min-h-screen flex-col">
-              <main className="flex-1">{children}</main>
-              <Toaster />
-            </div>
-          </AuthProvider>
+       <Suspense fallback={<div>Loading authentication...</div>}>
+            <AuthProvider>
+              <div className="relative flex min-h-screen flex-col">
+                <main className="flex-1">{children}</main>
+                <Toaster />
+              </div>
+            </AuthProvider>
+          </Suspense>
         </ThemeProvider>
       </body>
     </html>

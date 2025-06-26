@@ -345,3 +345,4 @@ src/
 - OpenRouter for AI model access
 - Serper for web search capabilities
 # news
+# newsu
