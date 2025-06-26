@@ -76,10 +76,32 @@ export interface Database {
       }
     }
     Views: {
-      // Define your database views here
+      // Assuming this is where the errors are, if not, find where {} is used
+      // Example of a view that might have had the error
+      // Replace these if they match your problematic lines
+      // view_name_1: {
+      //   Row: {
+      //     some_column: unknown; // CHANGED FROM {}
+      //   };
+      // };
+      // view_name_2: {
+      //   Row: {
+      //     another_column: unknown; // CHANGED FROM {}
+      //   };
+      // };
+      // view_name_3: {
+      //   Row: {
+      //     final_column: unknown; // CHANGED FROM {}
+      //   };
+      // };
     }
     Functions: {
-      // Define your database functions here
+      // If any of your functions return or take {} as a parameter, update them here
+      // For instance:
+      // some_function_name: {
+      //   Args: Record<string, unknown>; // CHANGED FROM {}
+      //   Returns: unknown; // CHANGED FROM {}
+      // };
     }
     Enums: {
       // Define your enums here
