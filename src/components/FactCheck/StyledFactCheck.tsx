@@ -81,7 +81,7 @@ export const StyledFactCheck: React.FC<FactCheckProps> = ({
       setImagePreview(`data:image/jpeg;base64,${initialImage}`);
       // Alias for compatibility
       const imageUrl = `data:image/jpeg;base64,${initialImage}`;
-      // @ts-ignore - For compatibility with existing code
+      // @ts-expect-error - For compatibility with existing code
       window.imageUrl = imageUrl;
     }
   }, [initialImage]);
