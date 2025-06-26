@@ -20,7 +20,6 @@ interface ChartData {
 }
 
 // A decorative SVG blob component for the background
-// A decorative SVG blob component for the background
 const Blob = ({ className }: { className?: string }) => (
   <svg
     className={`absolute -z-10 animate-float pointer-events-none ${className}`}
@@ -48,7 +47,7 @@ export default function DashboardPage() {
     if (!isAuthLoading && !isAuthenticated) {
       window.location.href = '/auth/login';
     }
-  }, [isAuthenticated, isAuthLoading]);
+  }, [isAuthenticated, isAuthLoading]); // Added isAuthenticated to dependency array
   const { toast } = useToast();
   const [textChartData, setTextChartData] = useState<ChartData[]>([{ name: 'Fake', count: 0, confidence: 0 }, { name: 'Real', count: 0, confidence: 0 }]);
   const [imageChartData, setImageChartData] = useState<ChartData[]>([{ name: 'Fake', count: 0, confidence: 0 }, { name: 'Real', count: 0, confidence: 0 }]);
@@ -127,7 +126,7 @@ export default function DashboardPage() {
     } finally {
       setIsLoadingLogs(false);
     }
-  }, [user?.id, toast]);
+  }, [user?.id, toast]); // Added toast to dependency array
 
   useEffect(() => {
     fetchLogsForCharts();
@@ -209,7 +208,7 @@ export default function DashboardPage() {
             NewsGuard AI Dashboard
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Welcome back, <span className="font-semibold text-foreground">{user?.name || 'User'}</span>. Let's uncover the truth, one analysis at a time.
+            Welcome back, <span className="font-semibold text-foreground">{user?.name || 'User'}</span>. Let&apos;s uncover the truth, one analysis at a time.
           </p>
         </header>
 
@@ -222,7 +221,7 @@ export default function DashboardPage() {
                 <CardTitle className="text-2xl font-headline text-card-foreground tracking-tight">Text Analysis</CardTitle>
               </div>
               <CardDescription>
-                Provide a block of text (e.g., article, post). We'll classify it for authenticity.
+                Provide a block of text (e.g., article, post). We&apos;ll classify it for authenticity.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -247,7 +246,7 @@ export default function DashboardPage() {
                 <CardTitle className="text-2xl font-headline text-card-foreground tracking-tight">Image Analysis</CardTitle>
               </div>
               <CardDescription>
-                Upload an image (PNG/JPEG/WEBP). We'll extract text using OCR and then classify it for authenticity.
+                Upload an image (PNG/JPEG/WEBP). We&apos;ll extract text using OCR and then classify it for authenticity.
               </CardDescription>
             </CardHeader>
             <CardContent>
