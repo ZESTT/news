@@ -76,29 +76,30 @@ export interface Database {
       }
     }
     Views: {
-      // Assuming this is where the errors are, if not, find where {} is used
-      // Example of a view that might have had the error
-      // Replace these if they match your problematic lines
-      // view_name_1: {
-      //   Row: {
-      //     some_column: unknown; // CHANGED FROM {}
-      //   };
-      // };
-      // view_name_2: {
-      //   Row: {
-      //     another_column: unknown; // CHANGED FROM {}
-      //   };
-      // };
-      // view_name_3: {
-      //   Row: {
-      //     final_column: unknown; // CHANGED FROM {}
-      //   };
-      // };
+      // You NEED to look at your actual file at lines 78, 81, 84
+      // Here's an example of what *might* be there and how to fix it:
+      // If you have a view named 'my_view' and it has a column that was typed as `{}`
+      // For example, imagine lines 78, 81, 84 are part of these definitions:
+      my_view_name_1: { // This might be around line 78
+        Row: {
+          some_column_78: unknown; // CHANGED FROM {}
+        };
+      };
+      my_view_name_2: { // This might be around line 81
+        Row: {
+          another_column_81: unknown; // CHANGED FROM {}
+        };
+      };
+      my_view_name_3: { // This might be around line 84
+        Row: {
+          final_column_84: unknown; // CHANGED FROM {}
+        };
+      };
+      // ... potentially other views
     }
     Functions: {
-      // If any of your functions return or take {} as a parameter, update them here
-      // For instance:
-      // some_function_name: {
+      // Similarly, if any database functions are typed with {}
+      // my_function_name: {
       //   Args: Record<string, unknown>; // CHANGED FROM {}
       //   Returns: unknown; // CHANGED FROM {}
       // };

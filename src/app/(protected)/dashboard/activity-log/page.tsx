@@ -1,19 +1,39 @@
-
 'use client';
 
+// Fix for Line 87: lucide-react import should occur before import of react
+// Move lucide-react related imports before React imports, generally.
+// Group 1: React & Hooks
 import React, { useState, useEffect, useCallback } from 'react';
+
+// Group 2: Contexts
 import { useAuth } from '@/contexts/AuthContext';
-import type { LogEntry, ImageAnalysisResponse, Reference, TextAnalysisResponse } from '@/lib/types';
+
+// Group 3: Types (keep these together)
+// Fix for Lines 80 & 81: 'Reference' and 'TextAnalysisResponse' are defined but never used.
+// Since you are not directly using `Reference` or `TextAnalysisResponse` in this file
+// (they are part of the `LogEntry` type via `result` or `result.references`),
+// you can remove them from the direct import.
+// You still need LogEntry and ImageAnalysisResponse.
+import type { LogEntry, ImageAnalysisResponse } from '@/lib/types';
+
+
+// Fix for Lines 82, 83, 84, 86: Import order for UI components
+// Group 4: UI Components (components/ui should generally be together)
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { History, FileText, Image as ImageIcon, Info, Link as LinkIcon, CheckCircle, XCircle, AlertTriangle } from 'lucide-react';
-import { formatDistanceToNow } from 'date-fns';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger, DialogFooter, DialogClose } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
+
+// Group 5: Icons (Lucide React)
+import { History, FileText, Image as ImageIcon, Info, Link as LinkIcon, CheckCircle, XCircle, AlertTriangle } from 'lucide-react';
+
+// Group 6: External Libraries (date-fns, hooks)
+import { formatDistanceToNow } from 'date-fns';
 import { useToast } from '@/hooks/use-toast';
+
 
 export default function ActivityLogPage() {
   const { user, isAuthenticated, isLoading: isAuthLoading } = useAuth();
@@ -75,15 +95,15 @@ export default function ActivityLogPage() {
     const fullText = getFullInputText(log);
     if (log.analysisType === 'image') {
         const prefix = "Extracted: ";
-        const availableLength = maxLength - prefix.length - 2; 
-        const displayText = fullText.length > availableLength 
-            ? `${fullText.substring(0, Math.max(0, availableLength - 3))}...` 
+        const availableLength = maxLength - prefix.length - 2;
+        const displayText = fullText.length > availableLength
+            ? `${fullText.substring(0, Math.max(0, availableLength - 3))}...`
             : fullText;
         return `${prefix}"${displayText}"`;
     }
     return fullText.length > maxLength ? `${fullText.substring(0, maxLength - 3)}...` : fullText;
   };
-  
+
   const getResultBadge = (label: string) => {
     const upperLabel = label.toUpperCase();
     if (upperLabel === 'FAKE') {
@@ -146,8 +166,8 @@ export default function ActivityLogPage() {
                         </TableCell>
                         <TableCell>
                           <Badge variant="outline" className="text-xs capitalize border-border text-muted-foreground">
-                            {log.analysisType === 'text' ? 
-                              <FileText className="h-3.5 w-3.5 mr-1.5" /> : 
+                            {log.analysisType === 'text' ?
+                              <FileText className="h-3.5 w-3.5 mr-1.5" /> :
                               <ImageIcon className="h-3.5 w-3.5 mr-1.5" />}
                             {log.analysisType}
                           </Badge>
@@ -204,7 +224,7 @@ export default function ActivityLogPage() {
                                     </p>
                                   </div>
                                 )}
-                                
+
                                 {log.result.references && log.result.references.length > 0 && (
                                   <div>
                                     <h3 className="font-semibold text-sm mb-2 text-card-foreground">Reasoning & References:</h3>
